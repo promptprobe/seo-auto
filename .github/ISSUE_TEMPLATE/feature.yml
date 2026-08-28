@@ -1,0 +1,42 @@
+name: Feature proposal
+description: Propose a reusable capability with a clear adapter or profile boundary.
+title: "proposal: "
+labels: ["proposal"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: Describe the user-visible problem rather than a preferred implementation.
+    validations:
+      required: true
+  - type: dropdown
+    id: scope
+    attributes:
+      label: Proposed scope
+      options:
+        - shared core
+        - profile
+        - provider adapter
+        - channel adapter
+        - example only
+        - unknown
+    validations:
+      required: true
+  - type: textarea
+    id: contract
+    attributes:
+      label: Input and expected output
+      description: Provide one or more concrete examples.
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence
+      description: Add primary-source links and observation dates for platform-specific claims.
+  - type: textarea
+    id: risks
+    attributes:
+      label: Risks and non-goals
+      description: Explain publishing, credential, compatibility, or regression risks.
