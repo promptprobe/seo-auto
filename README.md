@@ -28,6 +28,7 @@ That makes the workflow hard to test, reuse, and review. `seo-auto` keeps the re
 - **Technical SEO checks** — title, description, canonical, indexability, single H1, Open Graph, and JSON-LD parsing/type checks.
 - **Framework-neutral metadata and JSON-LD builders** — `BlogPosting`, `FAQPage`, and `BreadcrumbList`.
 - **Search metric math** — explicit CTR denominators, impression-weighted position, comparisons, and visibility buckets.
+- **Observed-search priorities** — rank measured queries and route them to existing-article improvements, new-article briefs, draft review, overlap review, or investigation. Missing/stale data stays unscored.
 - **No runtime dependencies** — adapters can use any LLM, database, CMS, framework, or scheduler.
 
 ## What is deliberately not included
@@ -193,6 +194,27 @@ const totals = aggregateSearchMetrics([
 
 Connectors should transform provider data into this explicit row contract. Authentication, API pagination, reporting lag, and data completeness remain adapter responsibilities.
 
+## Prioritize existing and new content
+
+`buildContentOpportunities` accepts finalized daily query totals, separate query/page attribution, and a content inventory. It makes no network calls and never writes or publishes content.
+
+```ts
+import { buildContentOpportunities } from '@promptprobe/seo-auto';
+
+const report = buildContentOpportunities({
+  snapshots,                 // 56 daily snapshots: current 28 days + prior 28 days
+  periodEnd: finalizedDate,   // confirmed by the search-data adapter
+  asOfDate: today,
+  inventory,                 // include published articles, drafts and hub pages
+  inventoryComplete: true,   // only after a successful, fully paginated inventory read
+});
+
+const improvements = report.rows.filter(row => row.action === 'improve' && row.score !== null);
+const newBriefs = report.rows.filter(row => row.action === 'create' && row.score !== null);
+```
+
+Run `npm run example:opportunities` for a synthetic, API-key-free example. Read [the input contract, score formula and limitations](docs/opportunities.md) before connecting real data. The score is a transparent editorial heuristic, not market search volume, expected traffic, or a probability of ranking. A new-content candidate still needs intent/source review.
+
 ## Multi-channel use
 
 Treat discovery strategy and publishing channel as separate dimensions:
@@ -232,4 +254,4 @@ Read [CONTRIBUTING.md](./CONTRIBUTING.md) and follow the repository instructions
 
 ## License
 
-No license has been selected yet. Public visibility alone does not grant permission to copy, modify, or redistribute the code. Add an explicit license before publishing this package for general reuse.
+[MIT](LICENSE). Copyright (c) 2026 promptprobe contributors. The distributed package includes the license notice.
