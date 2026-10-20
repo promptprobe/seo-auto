@@ -8,3 +8,4 @@ export * from './technical/metadata.js';
 export * from './technical/json-ld.js';
 export * from './technical/html-audit.js';
 export * from './metrics/search.js';
+export * from './metrics/opportunities.js';

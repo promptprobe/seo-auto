@@ -1,6 +1,7 @@
 {
   "name": "@promptprobe/seo-auto",
-  "version": "0.1.0",
+  "version": "0.2.0",
+  "license": "MIT",
   "description": "A framework-neutral, draft-first toolkit for SEO content automation and technical SEO checks.",
   "type": "module",
   "main": "./dist/index.js",
@@ -13,13 +14,16 @@
   },
   "files": [
     "dist",
-    "README.md"
+    "README.md",
+    "LICENSE",
+    "docs"
   ],
   "scripts": {
     "build": "tsc -p tsconfig.build.json",
     "typecheck": "tsc --noEmit",
     "test": "tsx --test test/*.test.ts",
     "example": "tsx examples/basic.ts",
+    "example:opportunities": "tsx examples/opportunities.ts",
     "check": "npm run typecheck && npm test && npm run build"
   },
   "engines": {
