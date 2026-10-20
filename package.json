@@ -24,6 +24,11 @@
     "test": "tsx --test test/*.test.ts",
     "example": "tsx examples/basic.ts",
     "example:opportunities": "tsx examples/opportunities.ts",
+    "onboarding:demo": "tsx examples/onboarding/cli.ts demo",
+    "onboarding:doctor": "tsx examples/onboarding/cli.ts doctor",
+    "onboarding:sync": "tsx examples/onboarding/cli.ts sync",
+    "onboarding:site": "tsx examples/onboarding/cli.ts site",
+    "onboarding:serve": "tsx examples/onboarding/serve.ts",
     "check": "npm run typecheck && npm test && npm run build"
   },
   "engines": {
@@ -38,6 +43,8 @@
   ],
   "devDependencies": {
     "@types/node": "^20.0.0",
+    "dotenv": "^17.4.2",
+    "google-auth-library": "^10.9.1",
     "tsx": "^4.20.0",
     "typescript": "^5.0.0"
   }

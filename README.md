@@ -77,12 +77,29 @@ seo-auto core
 Requires Node.js 20 or newer.
 
 ```bash
-npm install
+git clone https://github.com/promptprobe/seo-auto.git
+cd seo-auto
+npm ci
 npm run check
-npm run example
+npm run onboarding:demo
 ```
 
-The example uses a deterministic in-memory generator and does not require API keys.
+**New here? Follow [the onboarding walkthrough](docs/onboarding/README.md)** for the complete path: account-free demo → GSC connection → CMS inventory → reviewable draft → deployment and verification.
+
+| Task | Guide / command |
+| --- | --- |
+| Understand priorities without accounts | `npm run onboarding:demo` |
+| Connect finalized search observations | [Google Search Console](docs/onboarding/gsc.md) |
+| Configure a reference CMS and save a reviewed draft | [WordPress](docs/onboarding/wordpress.md) |
+| Check configured accounts, without writing content | `npm run onboarding:doctor` |
+| Save real observations privately on your computer | `npm run onboarding:sync` |
+| Build and preview a public fixture site | `npm run onboarding:site`, then `npm run onboarding:serve` |
+| Deploy the intended public artifact | [Deployment guide](docs/onboarding/deployment.md) |
+| Resolve setup or data issues | [Troubleshooting](docs/onboarding/troubleshooting.md) |
+
+The starter defaults to worldwide search and supports configurable languages, countries and devices. WordPress is an example adapter, not a restriction on the reusable core. Live examples read GSC and CMS data but never publish, deploy or mutate an external account. Private outputs go in ignored `.seo-auto/` directories; the separate public site build reads explicit public fixtures only.
+
+Run `npm run example` for the original deterministic generation pipeline or `npm run example:opportunities` for a minimal scoring example. Neither needs API keys.
 
 ## Minimal pipeline
 
@@ -235,7 +252,8 @@ src/
 ├─ pipeline/    draft-first orchestration
 └─ technical/   metadata, JSON-LD, and rendered HTML checks
 test/           executable behavior and regression fixtures
-examples/       API-key-free examples
+examples/       account-free demos and read-only connection adapters
+docs/onboarding/  first-run, GSC, CMS, deployment and troubleshooting guides
 ```
 
 ## Contributing
