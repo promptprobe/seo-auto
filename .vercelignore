@@ -1,0 +1,6 @@
+.env
+.env.*
+.secrets/
+.seo-auto/
+coverage/
+*.log

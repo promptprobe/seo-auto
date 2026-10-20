@@ -4,6 +4,8 @@ Thanks for helping improve `seo-auto`. Contributions should be evidence-backed, 
 
 ## Beginner path
 
+For using the toolkit before contributing, start with the [onboarding walkthrough](docs/onboarding/README.md). Its demo and public site build work without accounts.
+
 1. Open a fixture issue using the repository template.
 2. Describe the observed behavior, source, observation date, and expected result.
 3. Add the smallest failing test that represents the case.
@@ -36,7 +38,11 @@ You do not need to design a new abstraction for a first contribution. A high-qua
 npm install
 npm run check
 npm run example
+npm run onboarding:demo
+npm run onboarding:site
 ```
+
+Connection examples are tested with synthetic HTTP responses. Do not provide live credentials to CI. A passing mocked integration is not proof of a real account connection, deployment or search result.
 
 ## Commit style
 
